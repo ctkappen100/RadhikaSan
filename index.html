@@ -137,37 +137,44 @@
       `);
     }, 9000);
 
-    function nextStep() {
-      dissolve(`
-        <h1>My Lemon Pie Radhika San 🍋🥧</h1>
-        <p>
-          Will you be my Valentine?
-          <br>
-          <small>(pssss try clicking NO 😏)</small>
-        </p>
-        <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
-        <button class="no" id="noBtn">NOPE 😛</button>
-      `);
+  function nextStep() {
+  dissolve(`
+    <h1>My Lemon Pie Radhika San 🍋🥧</h1>
+    <p>
+      Will you be my Valentine?
+      <br>
+      <small>(pssss try clicking NO 😏)</small>
+    </p>
 
-      // Add the mouseover after dissolve finishes
-      setTimeout(() => {
-        const noBtn = document.getElementById("noBtn");
-        if (!noBtn) return;
+    <div style="margin-top:20px;">
+      <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
+    </div>
 
-        noBtn.addEventListener("mouseover", () => {
-          const padding = 20;
-          const btnW = noBtn.offsetWidth || 120;
-          const btnH = noBtn.offsetHeight || 50;
+    <div style="margin-top:10px; position:relative; height:60px;">
+      <button class="no" id="noBtn" style="left:50%; transform:translateX(-50%);">
+        NOPE 😛
+      </button>
+    </div>
+  `);
 
-          const x = Math.random() * (window.innerWidth - btnW - padding * 2) + padding;
-          const y = Math.random() * (window.innerHeight - btnH - padding * 2) + padding;
+  setTimeout(() => {
+    const noBtn = document.getElementById("noBtn");
+    if (!noBtn) return;
 
-          noBtn.style.left = x + "px";
-          noBtn.style.top = y + "px";
-          noBtn.style.transform = "none";
-        });
-      }, 650);
-    }
+    noBtn.addEventListener("mouseover", () => {
+      const padding = 20;
+      const btnW = noBtn.offsetWidth || 120;
+      const btnH = noBtn.offsetHeight || 50;
+
+      const x = Math.random() * (window.innerWidth - btnW - padding * 2) + padding;
+      const y = Math.random() * (window.innerHeight - btnH - padding * 2) + padding;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+      noBtn.style.transform = "none";
+    });
+  }, 650);
+}
 
     function finalStep() {
       dissolve(`
