@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Radhika San ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+    h1 {
+      color: #ff4d6d;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+    .no {
+      background: #ccc;
+      position: absolute;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="stage">
+  <h1>Hi Radhika San 💕</h1>
+  <p>Something special is loading for you…</p>
+</div>
+
+<script>
+  const stage = document.getElementById("stage");
+
+  // STEP 1: Photos (you'll add later)
+  setTimeout(() => {
+    stage.innerHTML = `
+      <h1>My Dearest Radhika San ❤️</h1>
+      <p>
+        This is our first Valentine’s Day together, and I honestly don’t have
+        enough words for how much you mean to me.
+        <br><br>
+        You walked into my life so gently, yet changed it so deeply.
+        Your laugh, your warmth, the way you exist — it all feels like home.
+        <br><br>
+        Loving you feels easy, exciting, and safe all at once.
+      </p>
+      <button class="yes" onclick="nextStep()">Click me 🥺</button>
+    `;
+  }, 7000);
+
+  function nextStep() {
+    stage.innerHTML = `
+      <h1>My Lemon Pie Radhika San 🍋🥧</h1>
+      <p>Will you be my Valentine?<br><small>(pssss try clicking NO 😏)</small></p>
+      <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
+      <button class="no" id="noBtn">NOPE 😛</button>
+    `;
+
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+  }
+
+  function finalStep() {
+    stage.innerHTML = `
+      <h1>You’ve made me the happiest man alive 💘</h1>
+      <p>
+        Thank you for choosing me, for loving me,
+        and for being you.
+        <br><br>
+        I love you so, so much — more than words, more than code,
+        more than anything. ❤️
+      </p>
+      <p><strong>Forever yours.</strong></p>
+    `;
+  }
+</script>
+
+</body>
+</html>
