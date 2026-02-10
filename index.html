@@ -67,29 +67,32 @@
 <script>
   const stage = document.getElementById("stage");
 
-  // STEP 1: Show photos first
-  stage.innerHTML = `
-    <img src="photo1.jpg">
-    <p>💗</p>
-  `;
+  // Smooth helper: fade swap content
+  function show(content) {
+    stage.style.opacity = 0;
+    setTimeout(() => {
+      stage.innerHTML = content;
+      stage.style.opacity = 1;
+    }, 250);
+  }
+
+  // Make fades smooth
+  stage.style.transition = "opacity 250ms ease";
+
+  // STEP 1: Photos (3 sec each)
+  show(`<img src="photo1.jpg" alt="photo 1">`);
 
   setTimeout(() => {
-    stage.innerHTML = `
-      <img src="photo2.jpg">
-      <p>💗💗</p>
-    `;
-  }, 2500);
+    show(`<img src="photo2.jpg" alt="photo 2">`);
+  }, 3000);
 
   setTimeout(() => {
-    stage.innerHTML = `
-      <img src="photo3.jpg">
-      <p>💗💗💗</p>
-    `;
-  }, 5000);
+    show(`<img src="photo3.jpg" alt="photo 3">`);
+  }, 6000);
 
-  // STEP 2: Message after 7 seconds
+  // STEP 2: Message after 9 seconds total
   setTimeout(() => {
-    stage.innerHTML = `
+    show(`
       <h1>My Dearest Radhika San ❤️</h1>
       <p>
         This is our first Valentine’s Day together,
@@ -104,11 +107,11 @@
         You are my soulmate, baby.
       </p>
       <button class="yes" onclick="nextStep()">Click me 🥺</button>
-    `;
-  }, 7000);
+    `);
+  }, 9000);
 
   function nextStep() {
-    stage.innerHTML = `
+    show(`
       <h1>My Lemon Pie Radhika San 🍋🥧</h1>
       <p>
         Will you be my Valentine?
@@ -117,24 +120,28 @@
       </p>
       <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
       <button class="no" id="noBtn">NOPE 😛</button>
-    `;
+    `);
 
     const noBtn = document.getElementById("noBtn");
     noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 60);
+      const padding = 20;
+      const btnW = noBtn.offsetWidth || 120;
+      const btnH = noBtn.offsetHeight || 50;
+
+      const x = Math.random() * (window.innerWidth - btnW - padding * 2) + padding;
+      const y = Math.random() * (window.innerHeight - btnH - padding * 2) + padding;
+
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     });
   }
 
   function finalStep() {
-    stage.innerHTML = `
-      <img src="final.jpg">
+    // Final message stays full time, image below it
+    show(`
       <h1>You’ve made me the happiest man alive 💘</h1>
       <p>
-        Choosing me, loving me,
-        and being you…
+        Choosing me, loving me, and being you…
         <br><br>
         it means everything to me.
         I love you more than words,
@@ -142,9 +149,13 @@
         more than time itself. ❤️
       </p>
       <p><strong>Forever yours.</strong></p>
-    `;
+      <div style="margin-top:16px;">
+        <img src="final.jpg" alt="us together">
+      </div>
+    `);
   }
 </script>
+
 
 
 </body>
