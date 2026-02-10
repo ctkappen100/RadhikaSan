@@ -94,6 +94,28 @@
       h1 { font-size: 28px; }
       p { font-size: 19px; }
     }
+    /* Fruit sticker background layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("guava.png"),
+    url("muskmelon.png");
+  background-repeat: repeat, repeat;
+  background-size: 60px 60px, 70px 70px;
+  background-position: 0 0, 30px 30px;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep card above stickers */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
   </style>
 </head>
 
