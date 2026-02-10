@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>For Radhika San ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -87,12 +88,22 @@
 </head>
 
 <body>
+  <audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
   <div class="container" id="stage">
     <h1>Hi Radhika San 💕</h1>
     <p>Something special is loading for you…</p>
   </div>
 
   <script>
+    const music = document.getElementById("bgMusic");
+
+function playMusic() {
+  if (!music) return;
+  music.volume = 0.6; // soft, romantic
+  music.play().catch(() => {});
+}
     const stage = document.getElementById("stage");
 
     // Dissolve transition helper
@@ -133,7 +144,7 @@
           <br><br>
           You are my soulmate, baby.
         </p>
-        <button class="yes" onclick="nextStep()">Click me 🥺</button>
+        <button class="yes" onclick="playMusic(); nextStep()">Click me 🥺</button>
       `);
     }, 9000);
 
