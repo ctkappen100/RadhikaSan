@@ -67,19 +67,41 @@
 <script>
   const stage = document.getElementById("stage");
 
-  // STEP 1: Photos (you'll add later)
+  // STEP 1: Show photos first
+  stage.innerHTML = `
+    <img src="photo1.jpg">
+    <p>💗</p>
+  `;
+
+  setTimeout(() => {
+    stage.innerHTML = `
+      <img src="photo2.jpg">
+      <p>💗💗</p>
+    `;
+  }, 2500);
+
+  setTimeout(() => {
+    stage.innerHTML = `
+      <img src="photo3.jpg">
+      <p>💗💗💗</p>
+    `;
+  }, 5000);
+
+  // STEP 2: Message after 7 seconds
   setTimeout(() => {
     stage.innerHTML = `
       <h1>My Dearest Radhika San ❤️</h1>
       <p>
-        This is our first Valentine’s Day together, and I honestly don’t have
-        enough words for how much you mean to me.
+        This is our first Valentine’s Day together,
+        and my heart still feels a little shocked at
+        how beautifully you’ve become a part of my life.
         <br><br>
-        You walked into my life so gently, yet changed it so deeply.
-        Your laugh, your warmth, the way you exist, it all feels so special.
+        You bring warmth, laughter, comfort, and magic
+        into my days without even trying.
+        Loving you feels natural, exciting,
+        and deeply right.
         <br><br>
-        Loving you feels easy, exciting, and safe all at once.
-        You are my Soulmate Baby
+        You are my soulmate, baby.
       </p>
       <button class="yes" onclick="nextStep()">Click me 🥺</button>
     `;
@@ -88,15 +110,19 @@
   function nextStep() {
     stage.innerHTML = `
       <h1>My Lemon Pie Radhika San 🍋🥧</h1>
-      <p>Will you be my Valentine?<br><small>(pssss try clicking NO 😏)</small></p>
+      <p>
+        Will you be my Valentine?
+        <br>
+        <small>(pssss try clicking NO 😏)</small>
+      </p>
       <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
       <button class="no" id="noBtn">NOPE 😛</button>
     `;
 
     const noBtn = document.getElementById("noBtn");
     noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 60);
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     });
@@ -104,18 +130,22 @@
 
   function finalStep() {
     stage.innerHTML = `
+      <img src="final.jpg">
       <h1>You’ve made me the happiest man alive 💘</h1>
       <p>
-        Thank you for loving me,
-        and for being you.
+        Choosing me, loving me,
+        and being you…
         <br><br>
-        I love you so, so much, more than words,
-        more than anything. ❤️
+        it means everything to me.
+        I love you more than words,
+        more than distance,
+        more than time itself. ❤️
       </p>
       <p><strong>Forever yours.</strong></p>
     `;
   }
 </script>
+
 
 </body>
 </html>
