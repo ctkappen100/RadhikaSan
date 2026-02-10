@@ -15,26 +15,36 @@
       overflow: hidden;
       text-align: center;
     }
+
     .container {
       max-width: 600px;
+      width: 90%;
       padding: 20px;
       background: white;
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       animation: fadeIn 1.5s ease;
+      position: relative;
     }
+
     img {
       max-width: 100%;
       border-radius: 15px;
-      margin-bottom: 10px;
+      display: block;
+      margin: 0 auto 10px auto;
     }
+
     h1 {
       color: #ff4d6d;
+      margin-top: 0;
     }
+
     p {
       font-size: 18px;
       color: #333;
+      line-height: 1.35;
     }
+
     button {
       padding: 12px 20px;
       font-size: 16px;
@@ -43,120 +53,138 @@
       cursor: pointer;
       margin: 10px;
     }
+
     .yes {
       background: #ff4d6d;
       color: white;
     }
+
     .no {
       background: #ccc;
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
     }
+
+    /* Smooth dissolve for all transitions */
+    #stage {
+      transition: opacity 0.6s ease;
+      opacity: 1;
+    }
+
+    /* Final image size */
+    .final-img {
+      width: 30%;
+      margin: 20px auto 0 auto;
+      display: block;
+    }
   </style>
 </head>
+
 <body>
+  <div class="container" id="stage">
+    <h1>Hi Radhika San 💕</h1>
+    <p>Something special is loading for you…</p>
+  </div>
 
-<div class="container" id="stage">
-  <h1>Hi Radhika San 💕</h1>
-  <p>Something special is loading for you…</p>
-</div>
+  <script>
+    const stage = document.getElementById("stage");
 
-<script>
-  const stage = document.getElementById("stage");
+    // Dissolve transition helper
+    function dissolve(content) {
+      stage.style.opacity = 0;
+      setTimeout(() => {
+        stage.innerHTML = content;
+        stage.style.opacity = 1;
+      }, 600);
+    }
 
-  // Smooth helper: fade swap content
-  function show(content) {
-    stage.style.opacity = 0;
+    // PHOTO 1 (0s -> 3s)
+    dissolve(`<img src="photo1.jpg" alt="photo 1">`);
+
+    // PHOTO 2 (3s -> 6s)
     setTimeout(() => {
-      stage.innerHTML = content;
-      stage.style.opacity = 1;
-    }, 250);
-  }
+      dissolve(`<img src="photo2.jpg" alt="photo 2">`);
+    }, 3000);
 
-  // Make fades smooth
-  stage.style.transition = "opacity 250ms ease";
+    // PHOTO 3 (6s -> 9s)
+    setTimeout(() => {
+      dissolve(`<img src="photo3.jpg" alt="photo 3">`);
+    }, 6000);
 
-  // STEP 1: Photos (3 sec each)
-  show(`<img src="photo1.jpg" alt="photo 1">`);
+    // MESSAGE (after 9 seconds)
+    setTimeout(() => {
+      dissolve(`
+        <h1>My Dearest Radhika San ❤️</h1>
+        <p>
+          This is our first Valentine’s Day together,
+          and my heart still feels a little shocked at
+          how beautifully you’ve become a part of my life.
+          <br><br>
+          You bring warmth, laughter, comfort, and magic
+          into my days without even trying.
+          Loving you feels natural, exciting,
+          and deeply right.
+          <br><br>
+          You are my soulmate, baby.
+        </p>
+        <button class="yes" onclick="nextStep()">Click me 🥺</button>
+      `);
+    }, 9000);
 
-  setTimeout(() => {
-    show(`<img src="photo2.jpg" alt="photo 2">`);
-  }, 3000);
+    function nextStep() {
+      dissolve(`
+        <h1>My Lemon Pie Radhika San 🍋🥧</h1>
+        <p>
+          Will you be my Valentine?
+          <br>
+          <small>(pssss try clicking NO 😏)</small>
+        </p>
+        <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
+        <button class="no" id="noBtn">NOPE 😛</button>
+      `);
 
-  setTimeout(() => {
-    show(`<img src="photo3.jpg" alt="photo 3">`);
-  }, 6000);
+      // Add the mouseover after dissolve finishes
+      setTimeout(() => {
+        const noBtn = document.getElementById("noBtn");
+        if (!noBtn) return;
 
-  // STEP 2: Message after 9 seconds total
-  setTimeout(() => {
-    show(`
-      <h1>My Dearest Radhika San ❤️</h1>
-      <p>
-        This is our first Valentine’s Day together,
-        and my heart still feels a little shocked at
-        how beautifully you’ve become a part of my life.
-        <br><br>
-        You bring warmth, laughter, comfort, and magic
-        into my days without even trying.
-        Loving you feels natural, exciting,
-        and deeply right.
-        <br><br>
-        You are my soulmate, baby.
-      </p>
-      <button class="yes" onclick="nextStep()">Click me 🥺</button>
-    `);
-  }, 9000);
+        noBtn.addEventListener("mouseover", () => {
+          const padding = 20;
+          const btnW = noBtn.offsetWidth || 120;
+          const btnH = noBtn.offsetHeight || 50;
 
-  function nextStep() {
-    show(`
-      <h1>My Lemon Pie Radhika San 🍋🥧</h1>
-      <p>
-        Will you be my Valentine?
-        <br>
-        <small>(pssss try clicking NO 😏)</small>
-      </p>
-      <button class="yes" onclick="finalStep()">YESSSS MY SWEET BOY 💖</button>
-      <button class="no" id="noBtn">NOPE 😛</button>
-    `);
+          const x = Math.random() * (window.innerWidth - btnW - padding * 2) + padding;
+          const y = Math.random() * (window.innerHeight - btnH - padding * 2) + padding;
 
-    const noBtn = document.getElementById("noBtn");
-    noBtn.addEventListener("mouseover", () => {
-      const padding = 20;
-      const btnW = noBtn.offsetWidth || 120;
-      const btnH = noBtn.offsetHeight || 50;
+          noBtn.style.left = x + "px";
+          noBtn.style.top = y + "px";
+          noBtn.style.transform = "none";
+        });
+      }, 650);
+    }
 
-      const x = Math.random() * (window.innerWidth - btnW - padding * 2) + padding;
-      const y = Math.random() * (window.innerHeight - btnH - padding * 2) + padding;
+    function finalStep() {
+      dissolve(`
+        <h1>You’ve made me the happiest man alive 💘</h1>
+        <p>
+          Choosing me, loving me, and being you…
+          <br><br>
+          it means everything to me.
+          I love you more than words,
+          more than distance,
+          more than time itself. ❤️
+        </p>
+        <p><strong>Forever yours.</strong></p>
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
-  }
-
-  function finalStep() {
-    // Final message stays full time, image below it
-    show(`
-      <h1>You’ve made me the happiest man alive 💘</h1>
-      <p>
-        Choosing me, loving me, and being you…
-        <br><br>
-        it means everything to me.
-        I love you more than words,
-        more than distance,
-        more than time itself. ❤️
-      </p>
-      <p><strong>Forever yours.</strong></p>
-      <div style="margin-top:16px;">
-        <img src="final.jpg" alt="us together">
-      </div>
-    `);
-  }
-</script>
-
-
-
+        <img src="final.jpg" class="final-img" alt="us together">
+      `);
+    }
+  </script>
 </body>
 </html>
